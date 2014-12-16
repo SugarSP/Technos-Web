@@ -9,8 +9,31 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="../js/script.js"></script>
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <link rel="stylesheet" href="../css/style.css" />
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body onload="initMap()">
+        <div id="map">
+            <div id="menu">
+                <select id="sel-departements" onchange="">
+                    <option>Paris</option>
+                    <option>Essonne</option>
+                    <option>Hauts-de-Seine</option>
+                    <option>Seine-Saint-Denis</option>
+                    <option>Val-de-Marne</option>
+                    <option>Val-d'Oise</option>
+                </select>
+                <select id="sel-departements" onchange="">
+                    <option>75</option>
+                    <option>91</option>
+                    <option>92</option>
+                    <option>93</option>
+                    <option>94</option>
+                    <option>95</option>
+                </select>
+            </div>
+        </div>
     </body>
 </html>

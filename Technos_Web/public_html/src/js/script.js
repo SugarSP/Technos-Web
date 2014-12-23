@@ -15,8 +15,8 @@ function initMap() {
 }
 
 $(document).ready(function() {
-    $("#menu > #nav > .nav-primary > li.level0 > a").click(function(ev){
-        if($(this).attr("class")=="active"){
+    $("#menu > #nav > .nav-primary > li.level0 > a").click(function(){
+        if($(this).attr("class")==="active"){
             $(this).parents("li").next(".sub-menu").slideUp();
             $(this).removeClass("active");
         }
@@ -25,4 +25,4 @@ $(document).ready(function() {
             $(this).addClass("active");
         }
     });
-})
+});

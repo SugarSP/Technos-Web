@@ -21,7 +21,7 @@ html, body{
     top: 10px;
 }
 
-nav{
+#menu{
 	position:relative;
     z-index:100;
     left: 85%;

@@ -22,6 +22,16 @@ html, body{
 /* DROPDOWN MENU RELATED */
 nav{
     position:relative;
+}
+
+#sel-departements{
+    z-index: 1; position:relative;
+    left: 85%;
+    top: 10px;
+}
+
+nav{
+	position:relative;
     z-index:100;
     left: 85%;
     top: 10px;

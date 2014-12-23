@@ -9,15 +9,30 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script type="text/javascript" src="../js/script.js"></script>
         <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
         <link rel="stylesheet" href="../css/style.css" />
     </head>
     <body onload="initMap()">
         <div id="map">
             <div id="menu">
-                <select id="sel-departements" onchange="">
+                <nav id="nav">
+                    <ul class="nav-primary">
+                        <li class="level0"><a href="#">Tous les départements</a></li>
+                        <ul class="sub-menu">
+                            <li>75</li>
+                            <li>91</li>
+                            <li>92</li>
+                            <li>93</li>
+                        </ul>
+                    </ul>
+                </nav>
+                <!--<select id="sel-departements" onchange="">
                     <option>Paris</option>
                     <option>Essonne</option>
                     <option>Hauts-de-Seine</option>
@@ -32,7 +47,7 @@ and open the template in the editor.
                     <option>93</option>
                     <option>94</option>
                     <option>95</option>
-                </select>
+                </select>-->
             </div>
         </div>
     </body>

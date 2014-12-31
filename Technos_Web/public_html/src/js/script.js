@@ -1,4 +1,4 @@
-function initMap() {
+/*function initMap() {
     var map = L.map('map').setView([48.85776, 2.33939], 11);
 
     L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
@@ -12,7 +12,7 @@ function initMap() {
 
     L.marker([48.85776, 2.33939]).addTo(map)
             .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-}
+}*/
 function middlepop(Tab,a){
     return (a>Tab.length)?false:(Tab.slice(0,a).concat(Tab.slice(a+1,Tab.length)));
 }
@@ -43,34 +43,51 @@ Array.prototype.clearDoublon=function() {
     return TempArray;
 }
 $(document).ready(function() {
-    var items = [];
+    var map = L.map('map').setView([48.85776, 2.33939], 11);
+
+    L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        id: 'examples.map-i875mjb7'
+    }).addTo(map);
+    var departements = [];
+    var station = new Array();
+    /*
+        Récupération données json
+     */
     $.getJSON("../json/sncf-gares-et-arrets-transilien-ile-de-france.json",function(result){
         format: "json",
         $.each(result, function(i, field){
-            items.push(field.fields.code_insee_commune.substr(0,2));
+            departements.push(field.fields.code_insee_commune.substr(0,2));
+            station.push(field.fields.nom_gare);
+            station.push(field.fields.code_insee_commune.substr(0,2));
+            station.push(field.geometry.coordinates[0]);
+            station.push(field.geometry.coordinates[1]);
         });
         /*
             Trie du tableau
          */
-        items.sort();
+        departements.sort();
         /*
             Suppression Doublon
          */
-        items=items.clearDoublon();
+        departements=departements.clearDoublon();
         /*
             Ajout des départements au dropdown menu
          */
-        for(var i = 0 ; i < items.length ; i++)
+        for(var i = 0 ; i < departements.length ; i++)
         {
-            $("#menu > #nav > .nav-primary > li").next(".sub-menu").append("<li id='d"+items[i]+"''><a href='#'>"+items[i]+"</a></li>");
+            $("#menu > #nav > .nav-primary > li").next(".sub-menu").append("<li id='d"+departements[i]+"''><a href='#'>"+departements[i]+"</a></li>");
             /*
                 Ajout event listener pour les effets du sous-menu
             */
-            document.getElementById("d"+items[i]).addEventListener("mouseover",function(){
+            document.getElementById("d"+departements[i]).addEventListener("mouseover",function(){
                 $(this).css("color","#f5f5f5");
                 $(this).css("text-shadow","rgba(255,255,255,0.5) 0px 0px 5px");
             });
-            document.getElementById("d"+items[i]).addEventListener("mouseout",function(){
+            document.getElementById("d"+departements[i]).addEventListener("mouseout",function(){
                 $(this).css("color","#a3abb0");
                 $(this).css("text-shadow","none");
             });
@@ -80,16 +97,32 @@ $(document).ready(function() {
         /*
             Fermeture du Dropdown menu
          */
-        if($(this).attr("class")==="level0 active"){
-            $(this).parents("li").next(".sub-menu").slideUp();
-            $(this).removeClass("active");
+        if($(this).attr("id")!="allStation") {
+            if($(this).attr("class")==="level0 active"){
+                $(this).parents("li").next(".sub-menu").slideUp();
+                $(this).removeClass("active");
+            }
+            /*
+                Ouverture du Dropdown menu
+             */
+            else{
+                $(this).parents("li").next(".sub-menu").slideDown();
+                $(this).addClass("active");
+            }
         }
-        /*
-            Ouverture du Dropdown menu
-         */
-        else{
-            $(this).parents("li").next(".sub-menu").slideDown();
-            $(this).addClass("active");
+        else {
+            /*var coord = [];
+            $.getJSON("../json/sncf-gares-et-arrets-transilien-ile-de-france.json",function(resultBis){
+                format: "json",
+                $.each(resultBis, function(i, field){
+                    //coord.push(field.geometry.type);
+                    coord.push(field.fields.code_insee_commune.substr(0,2));
+                });
+            });
+            alert(coord.length);*/
+            for(var i=0;i<station.length/4;i=i+4) {
+                L.marker([station[i+3], station[i+2]]).addTo(map).bindPopup(station[i]);
+            }
         }
     });
     /*

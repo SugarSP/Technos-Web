@@ -18,12 +18,13 @@ and open the template in the editor.
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
         <link rel="stylesheet" href="../css/style.css" />
     </head>
-    <body onload="initMap()">
+    <body>
         <div id="map">
             <div id="menu">
                 <nav id="nav">
                     <ul class="nav-primary">
-                        <li class="level0"><a href="#" class='level0'>Tous les départements</a></li>
+                        <li class="level0"><a href="#" class='level0' id="allStation">Toutes les gares</a></li>
+                        <li class="level0"><a href="#" class='level0'>Départements</a></li>
                         <ul class="sub-menu">
                             <!-- Dropdown menu en dur
                             <li>75 - Paris</li>

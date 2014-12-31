@@ -1,7 +1,18 @@
 @charset "UTF-8";
 
 /* GLOBAL STYLE */
-
+@font-face {
+    font-family: robotoMedium;
+    src: url('../assets/Roboto-Medium-webfont.ttf');
+}
+@font-face {
+    font-family: robotoLight;
+    src: url('../assets/Roboto-Light-webfont.ttf');
+}
+@font-face {
+    font-family: robotoRegular;
+    src: url('../assets/Roboto-Regular-webfont.ttf');
+}
 *{
     margin:0;
     padding:0;
@@ -23,18 +34,28 @@ html, body{
 nav{
     position:relative;
 }
-
 #sel-departements{
     z-index: 1; position:relative;
     left: 85%;
     top: 10px;
 }
-
-nav{
-	position:relative;
+#menu {
+    position:relative;
     z-index:100;
     left: 85%;
     top: 10px;
+    box-sizing: border-box;
+    border-bottom:1px solid #000;
+    border-left:1px solid #000;
+    border-right:1px solid #000;
+    border-top:1px solid #000;
+    list-style: none;
+    width:222px;
+    background-color:#282a2b;
+}
+nav{
+	padding:0;
+    margin:0;
 }
 
 nav ul {
@@ -47,7 +68,52 @@ nav ul {
 #menu > #nav > .nav-primary > li{
     position:relative;
     display:block;
+    min-height: 20px;
+    width:100%;
+    box-sizing: border-box;
+    border:1px solid #4e5051;
+    border-bottom:1px solid #000;
+    border-left:1px solid #4e5051;
+    border-right:1px solid #4e5051;
+    border-top:1px solid #4e5051;
+}
+#menu > #nav > .nav-primary > li > a{
+    position:relative;
+    display:block;
+    text-decoration: none;
+    color:#FFF;
+    font-family: robotoLight;
+    font-size: 14px;
+    padding-left:8px;
 }
 #menu > #nav > .nav-primary > li.level1 {
     display:none;
+}
+#menu > #nav > .nav-primary > ul {
+    border-top:1px solid #000;
+    background-color:#1f1f22;
+    border-bottom:1px solid #000;
+}
+#menu > #nav > .nav-primary > ul > li{
+    margin-left:3px;
+    border-left:1px solid #000;
+    list-style-type: none;
+}
+#menu > #nav > .nav-primary > ul > li > a {
+    display:block;
+    position:relative;
+    font-family: Roboto-Light;
+    font-size: 13px;
+    line-height: 28px;
+    font-weight: 300;
+    color: #a3abb0;
+    text-decoration: none;
+    box-sizing: border-box;
+    padding-left: 3px;
+    background-repeat: no-repeat;
+    background-position: 19px center;
+    border-left:1px solid #424445;
+    border-top:1px solid #424445;
+    background-color:#1f2122;
+    max-height: 40px;
 }

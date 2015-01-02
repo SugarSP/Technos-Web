@@ -54,6 +54,7 @@ $(document).ready(function() {
     }).addTo(map);
     var departements = [];
     var station = new Array();
+    var markers = [];
     /*
         Récupération données json
      */
@@ -91,6 +92,20 @@ $(document).ready(function() {
                 $(this).css("color","#a3abb0");
                 $(this).css("text-shadow","none");
             });
+            document.getElementById("d"+departements[i]).addEventListener("click",function(){
+                for(var i=0;i<markers.length;i++)
+                {
+                    map.removeLayer(markers[i]);
+                }
+                markers = [];
+                var j = 0;
+                for(var i=0;i<station.length/4;i=i+4) {
+                    if("d"+station[i+1]===$(this).attr("id")){
+                        markers[j] = new L.marker([station[i+3], station[i+2]]).addTo(map).bindPopup(station[i]);
+                        j++;
+                    }
+                }
+            });
         }
     });
     $("#menu > #nav > .nav-primary > li.level0 > a").click(function(){
@@ -111,20 +126,14 @@ $(document).ready(function() {
             }
         }
         else {
-            /*var coord = [];
-            $.getJSON("../json/sncf-gares-et-arrets-transilien-ile-de-france.json",function(resultBis){
-                format: "json",
-                $.each(resultBis, function(i, field){
-                    //coord.push(field.geometry.type);
-                    coord.push(field.fields.code_insee_commune.substr(0,2));
-                });
-            });
-            alert(coord.length);*/
+            var j = 0;
             for(var i=0;i<station.length/4;i=i+4) {
-                L.marker([station[i+3], station[i+2]]).addTo(map).bindPopup(station[i]);
+                markers[j] = new L.marker([station[i+3], station[i+2]]).addTo(map).bindPopup(station[i]);
+                j++;
             }
         }
     });
+    
     /*
         Effet mousedown et mouseup menu
     */

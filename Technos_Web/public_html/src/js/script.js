@@ -55,15 +55,18 @@ $(document).ready(function () {
                 $(this).css("text-shadow", "none");
             });
             document.getElementById("d" + departements[i]).addEventListener("click", function () {
-                for (var i = 0; i < markers.length; i++)
+                for(var i=0;i<markers.length;i++)
+                {
                     map.removeLayer(markers[i]);
+                }
                 markers = [];
                 var j = 0;
-                for (var i = 0; i < station.length / 4; i = i + 4)
-                    if ("d" + station[i + 1] === $(this).attr("id"))
-                        markers[j] = new L.marker([station[i + 3], 
-                            station[i + 2]]).addTo(map).bindPopup(station[i]);
-                j++;
+                for(var i=0;i<station.length/4;i=i+4) {
+                    if("d"+station[i+1]===$(this).attr("id")){
+                        markers[j] = new L.marker([station[i+3], station[i+2]]).addTo(map).bindPopup(station[i]);
+                        j++;
+                    }
+                }
             });
         }//endfor
     });
@@ -86,6 +89,10 @@ $(document).ready(function () {
         }
         /* Display all stations */
         else {
+            for(var i=0;i<markers.length;i++)
+            {
+                    map.removeLayer(markers[i]);
+            }
             var j = 0;
             for (var i = 0; i < station.length / 4; i = i + 4) {
                 markers[j] = new L.marker([station[i + 3], station[i + 2]]).addTo(map).bindPopup(station[i]);
